@@ -4,8 +4,8 @@ import { apiClient } from './config';
 export interface UserProfile {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   avatar?: string;
   balance: number;
   isVerified: boolean;
@@ -14,8 +14,8 @@ export interface UserProfile {
 }
 
 export interface UpdateProfileRequest {
-  firstName?: string;
-  lastName?: string;
+  first_name?: string;
+  last_name?: string;
   avatar?: string;
 }
 
@@ -28,12 +28,9 @@ export const userAPI = {
   // Get User Session
   getSession: async (): Promise<AuthResponse> => {
     try {
-      console.log("Making session request...");
       const response = await apiClient.post('/auth/session');
-      console.log("getSession response===>", response.data);
       return response.data;
     } catch (error) {
-      console.error("getSession error===>", error);
       throw error;
     }
   },

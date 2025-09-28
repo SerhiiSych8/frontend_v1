@@ -23,98 +23,81 @@ import JackpotBanner from '@/assets/banner/jackpot.png';
 
 
 export default function Home() {
-  const [featuredGames, setFeaturedGames] = useState<Game[]>([]);
+  const [featuredGames, setFeaturedGames] = useState<Game[]>([
+    {
+      id: '1',
+      name: 'Lucky Slots',
+      description: 'Classic slot game with amazing prizes',
+      imageUrl: GameImage.src,
+      category: 'Slots',
+      isActive: true,
+      minBet: 0.25,
+      maxBet: 100,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: '2',
+      name: 'Blackjack Pro',
+      description: 'Professional blackjack experience',
+      imageUrl: GameImage.src,
+      category: 'Blackjack',
+      isActive: true,
+      minBet: 1,
+      maxBet: 500,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: '3',
+      name: 'Roulette Royale',
+      description: 'European roulette with live dealers',
+      imageUrl: GameImage.src,
+      category: 'Roulette',
+      isActive: true,
+      minBet: 0.5,
+      maxBet: 1000,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: '3',
+      name: 'Lucky Slots',
+      description: 'Classic slot game with amazing prizes',
+      imageUrl: GameImage.src,
+      category: 'Slots',
+      isActive: true,
+      minBet: 0.25,
+      maxBet: 100,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: '4',
+      name: 'Blackjack Pro',
+      description: 'Professional blackjack experience',
+      imageUrl: GameImage.src,
+      category: 'Blackjack',
+      isActive: true,
+      minBet: 1,
+      maxBet: 500,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: '6',
+      name: 'Roulette Royale',
+      description: 'European roulette with live dealers',
+      imageUrl: GameImage.src,
+      category: 'Roulette',
+      isActive: true,
+      minBet: 0.5,
+      maxBet: 1000,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+  ]);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const loadFeaturedGames = async () => {
-      try {
-        const games = await gamesAPI.getGames();
-        setFeaturedGames(games.slice(0, 6)); // Show first 6 games
-      } catch (error) {
-        console.error('Failed to load games:', error);
-        // Mock data for demonstration
-        setFeaturedGames([
-          {
-            id: '1',
-            name: 'Lucky Slots',
-            description: 'Classic slot game with amazing prizes',
-            imageUrl: GameImage.src,
-            category: 'Slots',
-            isActive: true,
-            minBet: 0.25,
-            maxBet: 100,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-          {
-            id: '2',
-            name: 'Blackjack Pro',
-            description: 'Professional blackjack experience',
-            imageUrl: GameImage.src,
-            category: 'Blackjack',
-            isActive: true,
-            minBet: 1,
-            maxBet: 500,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-          {
-            id: '3',
-            name: 'Roulette Royale',
-            description: 'European roulette with live dealers',
-            imageUrl: GameImage.src,
-            category: 'Roulette',
-            isActive: true,
-            minBet: 0.5,
-            maxBet: 1000,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-          {
-            id: '3',
-            name: 'Lucky Slots',
-            description: 'Classic slot game with amazing prizes',
-            imageUrl: GameImage.src,
-            category: 'Slots',
-            isActive: true,
-            minBet: 0.25,
-            maxBet: 100,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-          {
-            id: '4',
-            name: 'Blackjack Pro',
-            description: 'Professional blackjack experience',
-            imageUrl: GameImage.src,
-            category: 'Blackjack',
-            isActive: true,
-            minBet: 1,
-            maxBet: 500,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-          {
-            id: '6',
-            name: 'Roulette Royale',
-            description: 'European roulette with live dealers',
-            imageUrl: GameImage.src,
-            category: 'Roulette',
-            isActive: true,
-            minBet: 0.5,
-            maxBet: 1000,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          },
-        ]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadFeaturedGames();
-  }, []);
 
 
   return (

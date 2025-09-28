@@ -64,7 +64,7 @@ export default function Layout({
   const handleSigninSuccess = () => {
     setIsSigninModalOpen(false);
     // Redirect to dashboard
-    window.location.href = '/dashboard';
+    window.location.href = '/';
   };
 
   const handleSignupSuccess = () => {
@@ -72,7 +72,7 @@ export default function Layout({
     // Set new user flag for welcome message
     localStorage.setItem('isNewUser', 'true');
     // Redirect to dashboard
-    window.location.href = '/dashboard';
+    window.location.href = '/';
   };
 
   const handleSwitchToSignup = () => {
@@ -87,8 +87,8 @@ export default function Layout({
 
   // Convert user data to the format expected by Header component
   const headerUser = user ? {
-    firstName: user.firstName,
-    lastName: user.lastName,
+    first_name: user.first_name,
+    last_name: user.last_name,
     balance: user.balance,
     avatar: user.avatar,
   } : undefined;

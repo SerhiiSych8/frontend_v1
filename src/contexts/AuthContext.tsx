@@ -53,14 +53,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (response.token && typeof window !== 'undefined') {
         localStorage.setItem('authToken', response.token);
       }
-      
+
       // Set user data if available
       if (response.user) {
         setUser({
           id: response.user.id,
           email: response.user.email,
-          firstName: response.user.firstName || '',
-          lastName: response.user.lastName || '',
+          first_name: response.user.first_name || '',
+          last_name: response.user.last_name || '',
           balance: 0, // Will be fetched separately
           isVerified: response.user.profile_complete || false,
           createdAt: response.user.created_at || new Date().toISOString(),
@@ -86,21 +86,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setError(null);
 
       const response: AuthResponse = await authAPI.register(userData);
-      
+
       // Check if registration was successful
       if (response.success) {
         // Store token if available
         if (response.token && typeof window !== 'undefined') {
           localStorage.setItem('authToken', response.token);
         }
-        
+
         // Set user data if available
         if (response.user) {
           setUser({
             id: response.user.id,
             email: response.user.email,
-            firstName: response.user.firstName || '',
-            lastName: response.user.lastName || '',
+            first_name: response.user.first_name || '',
+            last_name: response.user.last_name || '',
             balance: 0, // Will be fetched separately
             isVerified: response.user.profile_complete || false,
             createdAt: response.user.created_at || new Date().toISOString(),
@@ -110,7 +110,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       } else {
         throw new Error(response.message || 'Registration failed');
       }
-      
+
       return response;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || err.message || 'Registration failed. Please try again.';
@@ -143,7 +143,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       setIsLoading(true);
       const response = await userAPI.getSession();
-      console.log("refreshUser===>", response);
       if(response && response.success) {
         setUser(response.user as UserProfile);
       }
@@ -161,7 +160,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // Check user session
   useEffect(() => {
-    refreshUser();
+    if (typeof window !== undefined) {
+      const authToken = localStorage?.getItem("authToken");
+      if (authToken)
+        refreshUser();
+    }
   }, []);
 
   // Check authentication on mount

@@ -57,7 +57,7 @@ apiClient.interceptors.response.use(
       // Handle unauthorized access
       if (typeof window !== 'undefined') {
         localStorage.removeItem('authToken');
-        window.location.href = '/';
+        // window.location.href = '/';
       }
     }
     return Promise.reject(error);

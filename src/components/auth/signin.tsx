@@ -81,7 +81,7 @@ export default function SigninModal({ isOpen, onClose, onSuccess, onSwitchToSign
             }
             if (response && response.success) {
                 toast.success(response.message);
-                // onSuccess();
+                onSuccess();
             }
         } catch (err) {
             console.error('Signin error:', err);

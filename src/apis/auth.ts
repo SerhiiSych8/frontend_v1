@@ -8,8 +8,8 @@ export interface LoginRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   username?: string;
   city?: string;
   phone?: string;
@@ -28,8 +28,8 @@ export interface AuthResponse {
   user?: {
     id: string;
     email: string;
-    firstName?: string;
-    lastName?: string;
+    first_name?: string;
+    last_name?: string;
     username?: string;
     profile_complete?: boolean;
     created_at?: string;

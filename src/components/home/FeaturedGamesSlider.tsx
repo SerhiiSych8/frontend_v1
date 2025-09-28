@@ -65,8 +65,8 @@ export default function FeaturedGamesSlider({ games, onViewAllClick }: FeaturedG
           },
         }}
       >
-        {games.map((game) => (
-          <SwiperSlide key={game.id}>
+        {games.map((game, ind) => (
+          <SwiperSlide key={ind}>
             <div className="bg-[#232b3b] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer group w-full max-w-[120px] md:max-w-[140px] md:max-w-[160px] lg:max-w-[166px]">
               <div className="relative w-full aspect-[3/4]">
                 <Image
@@ -78,9 +78,6 @@ export default function FeaturedGamesSlider({ games, onViewAllClick }: FeaturedG
                   priority={true}
                 />
               </div>
-              {/* <div className="p-3">
-                <h3 className="text-base font-semibold text-white group-hover:text-yellow-primary truncate">{game.name}</h3>
-              </div>  */}
             </div>
           </SwiperSlide>
         ))}

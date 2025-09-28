@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 interface HeaderProps {
   user?: {
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     balance: number;
     avatar?: string;
   };
@@ -49,7 +49,7 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                 <div className="hidden md:flex items-center space-x-2 bg-yellow-primary/10 px-3 py-2 rounded-lg">
                   <Icon icon="mdi:wallet" className="w-5 h-5 text-yellow-primary" />
                   <span className="text-sm font-medium text-white">
-                    ${user.balance.toFixed(2)}
+                    $0
                   </span>
                 </div>
 
@@ -59,27 +59,16 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     className="flex items-center space-x-2 bg-yellow-primary/10 hover:bg-yellow-primary/20 px-3 py-2 rounded-lg transition-colors"
                   >
-                    {user.avatar ? (
-                      <img
-                        src={user.avatar}
-                        alt={`${user.firstName} ${user.lastName}`}
-                        className="w-8 h-8 rounded-full"
-                      />
-                    ) : (
-                      <div className="w-8 h-8 bg-yellow-primary rounded-full flex items-center justify-center">
-                        <span className="text-sm font-medium text-[#0C1423]">
-                          {user.firstName.charAt(0)}{user.lastName.charAt(0)}
-                        </span>
-                      </div>
-                    )}
+                    <div className="w-8 h-8 bg-yellow-primary/50 rounded-full text-center flex items-center justify-center">
+                      <Icon icon="mdi:account" className="w-6 h-6" />
+                    </div>
                     <span className="hidden md:block text-sm font-medium text-white">
-                      {user.firstName}
+                      {user.first_name}
                     </span>
-                    <Icon 
-                      icon="mdi:chevron-down" 
-                      className={`w-4 h-4 text-white transition-transform ${
-                        isUserMenuOpen ? 'rotate-180' : ''
-                      }`} 
+                    <Icon
+                      icon="mdi:chevron-down"
+                      className={`w-4 h-4 text-white transition-transform ${isUserMenuOpen ? 'rotate-180' : ''
+                        }`}
                     />
                   </button>
 
@@ -100,7 +89,7 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                           Wallet
                         </button>
                         <hr className="my-1 border-yellow-primary/20" />
-                        <button 
+                        <button
                           onClick={onLogout}
                           className="flex items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-red-400/10 transition-colors"
                         >
@@ -118,7 +107,7 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                 <button className="text-yellow-primary hover:text-yellow-primary/80 transition-colors p-2 hidden md:block">
                   <Icon icon="mdi:magnify" className="w-6 h-6" />
                 </button>
-                
+
                 {/* Login Button */}
                 <button
                   onClick={onLogin}
@@ -126,7 +115,7 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                 >
                   Login
                 </button>
-                
+
                 {/* Sign up Button */}
                 <button
                   onClick={onRegister}
