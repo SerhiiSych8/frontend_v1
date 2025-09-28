@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+@theme{
+  --color-yellow-primary: #E0FE08;
+  --color-lavendar-primary: #97B9FF;
+  --color-dark-primary: #0C1423;
+  --color-blue-primary: #182641;
+}
+
+:root {
+  --background: #182641;
+  --foreground: #ffffff;
+  --primary-yellow: #E0FE08;
+  --primary-lavendar: #97B9FF;
+  --primary-dark: #0C1423;
+}
+
+/* Tailwind CSS custom properties */
+.custom-btn-bg{
+  background-image: url('./../assets/button/normal_bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.custom-btn-bg-active{
+  background-image: url('./../assets/button/select_bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  font-family: var(--font-geologica);
+  color: var(--foreground);
+}
+
+button, a {
+  cursor: pointer;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-lavendar);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-lavendar);
+  opacity: 0.8;
+}
+
+/* Selection styles */
+::selection {
+  background: var(--primary-yellow);
+  color: var(--primary-dark);
+}
+
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Custom animations for navbar */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.3s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.2s ease-out forwards;
+}
+
+.animate-bounceIn {
+  animation: bounceIn 0.4s ease-out forwards;
+}
+
+
+/* Main Loading */
+.main-loading-spinner {
+  --size: 250px;
+  --thickness: 25px;
+
+  width: var(--size);
+  height: var(--size);
+
+  position: relative;
+  border-radius: 50%;
+  background-color: #0C1423;
+
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.main-loading-spinner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(to bottom, #E0FE08, transparent);
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+
+  border-top-left-radius: calc(var(--size) / 2);
+  border-bottom-left-radius: calc(var(--size) / 2);
+}
+
+.main-loading-spinner::after {
+  content: '';
+  width: calc(var(--size) - (var(--thickness) * 2));
+  height: calc(var(--size) - (var(--thickness) * 2));
+
+  position: absolute;
+  top: var(--thickness);
+  left: var(--thickness);
+  border-radius: 50%;
+  background-color: #182641;
+}
+
+.main-loading-spinner-ball {
+  width: var(--thickness);
+  height: var(--thickness);
+
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: #E0FE08;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #E0FE08, 0 0 20px #E0FE08, 0 0 30px #E0FE08,
+    0 0 40px #E0FE08, 0 0 50px #E0FE08;
+}
+
+.main-loading-spinner-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #182641;
+}
+
+/* Main Loading End */
+
+/* Sub Loading */
+
+.sub-loading-spinner {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  /*   border: 1px solid black; */
+  animation: sub-loading-spinner 3s linear infinite;
+}
+
+.sub-loading-spinner .circle:nth-child(1) {
+  width: 20px;
+  height: 20px;
+  border-radius: 0%;
+  background: #ff6b81;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(1);
+  animation: sub-loading-spinner-position-to-center 1s ease-in infinite;
+  animation-direction: alternate;
+}
+
+.sub-loading-spinner .circle:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  background: #0be881;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: scale(1) translate(0%, 0%);
+  animation: sub-loading-spinner-position-to-center 1s ease-in infinite;
+  animation-direction: alternate;
+}
+
+.sub-loading-spinner .circle:nth-child(3) {
+  width: 20px;
+  height: 20px;
+  border-radius: 0%;
+  background: #4bcffa;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scale(1) translate(0%, 0%);
+  animation: sub-loading-spinner-position-to-center 1s ease-in infinite;
+  animation-direction: alternate;
+}
+
+.sub-loading-spinner .circle:nth-child(4) {
+  width: 20px;
+  height: 20px;
+  border-radius: 0%;
+  background: #575fcf;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scale(1) translate(0%, 0%);
+  animation: sub-loading-spinner-position-to-center 1s ease-in infinite;
+  animation-direction: alternate;
+}
+
+
+
+@keyframes sub-loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sub-loading-spinner-position-to-center {
+  to {
+    left: 50%;
+    top: 50%;
+    bottom: 50%;
+    right: 50%;
+    transform: scale(2) translate(-50%, -50%);
+    background: #1abc9c;
+    border-radius: 50%;
+  }
+}
+
+/* Sub Loading End */
