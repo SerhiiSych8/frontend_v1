@@ -64,7 +64,7 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                       <Icon icon="mdi:account" className="w-4 h-4" />
                     </div>
                     <span className="hidden md:block text-sm font-medium text-white">
-                      {user.first_name || "serhii"}
+                      {user.first_name}
                     </span>
                     <Icon
                       icon="mdi:chevron-down"
