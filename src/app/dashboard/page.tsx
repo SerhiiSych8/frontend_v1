@@ -47,7 +47,7 @@ export default function DashboardPage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-[#E0FE08]">Welcome to Casinade!</h1>
-            <p className="text-gray-400">Hello, {user?.firstName || 'Player'}!</p>
+            <p className="text-gray-400">Hello, {user?.first_name || 'Player'}!</p>
           </div>
           <button
             onClick={() => {
@@ -95,7 +95,7 @@ export default function DashboardPage() {
             </div>
             <div className="space-y-2">
               <p className="text-white">
-                <span className="text-gray-400">Name:</span> {user?.firstName} {user?.lastName}
+                <span className="text-gray-400">Name:</span> {user?.first_name} {user?.last_name}
               </p>
               <p className="text-white">
                 <span className="text-gray-400">Email:</span> {user?.email}

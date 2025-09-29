@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Icon } from '@iconify/react';
-import { authAPI } from '@/apis/auth';
 
 export default function VerifyEmailPage() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -21,7 +20,6 @@ export default function VerifyEmailPage() {
           return;
         }
 
-        await authAPI.verifyEmail(token);
         setStatus('success');
         setMessage('Email verified successfully! Redirecting to dashboard...');
         

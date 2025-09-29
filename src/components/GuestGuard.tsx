@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
 import { Icon } from '@iconify/react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface GuestGuardProps {
   children: ReactNode;
