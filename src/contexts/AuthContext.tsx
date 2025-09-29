@@ -9,6 +9,7 @@ interface AuthContextType {
   user: UserProfile | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  setIsLoading: (loading: boolean)=>void;
   error: string | null;
 
   // Actions
@@ -193,6 +194,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     user,
     isAuthenticated,
     isLoading,
+    setIsLoading,
     error,
 
     // Actions

@@ -73,7 +73,6 @@ export default function SigninModal({ isOpen, onClose, onSuccess, onSwitchToSign
                 email: signinData.email,
                 password: signinData.password,
             });
-            console.log("Signin response:", response);
             // Handle remember me functionality
             if (signinData.rememberMe) {
                 // Token is already stored in localStorage by the auth context
@@ -229,7 +228,7 @@ export default function SigninModal({ isOpen, onClose, onSuccess, onSwitchToSign
                         </div>
 
                         {/* Social Login Buttons */}
-                        <div className="space-y-3">
+                        {/* <div className="space-y-3">
                             <button
                                 type="button"
                                 className="w-full bg-[#182641] border border-gray-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-[#182641]/80 transition-colors flex items-center justify-center space-x-2"
@@ -244,7 +243,7 @@ export default function SigninModal({ isOpen, onClose, onSuccess, onSwitchToSign
                                 <Icon icon="mdi:facebook" className="w-5 h-5" />
                                 <span>Continue with Facebook</span>
                             </button>
-                        </div>
+                        </div> */}
 
                         {/* Sign Up Link */}
                         <div className="text-center">

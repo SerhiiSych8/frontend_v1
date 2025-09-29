@@ -39,7 +39,7 @@ export default function Layout({
   showNavbar = true,
   showFooter = true
 }: LayoutProps) {
-  const { user, isAuthenticated, isLoading, logout } = useAuth();
+  const { user, isAuthenticated, isLoading, setIsLoading, logout } = useAuth();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isSigninModalOpen, setIsSigninModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
@@ -53,12 +53,15 @@ export default function Layout({
   };
 
   const handleLogout = async () => {
+    setIsLoading(true);
     try {
       await logout();
       // Optionally redirect to home page
       window.location.href = '/';
     } catch (error) {
       console.error('Logout failed:', error);
+    }finally{
+      setIsLoading(false)
     }
   };
 

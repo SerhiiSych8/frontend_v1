@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useRegister } from '@/hooks/useAuth';
+import { useLogin, useRegister } from '@/hooks/useAuth';
 import { authAPI } from '@/apis/auth';
 import { toast } from 'react-toastify';
 
@@ -87,6 +87,7 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
     });
 
     const { register, isRegistering, error, clearError } = useRegister();
+    const { login } = useLogin();
 
     // Reset form when modal opens/closes
     // useEffect(() => {
@@ -254,7 +255,7 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
                 birthday: detailedData.birthday,
                 city: detailedData.city,
                 phone: detailedData.phone,
-                address_line: detailedData.address1,
+                address_line1: detailedData.address1,
                 address_line2: detailedData.address2,
                 country: detailedData.country,
                 postal_code: detailedData.postalCode,
@@ -267,7 +268,11 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
             // Check if completion was successful
             if (response.success) {
                 toast.success(response?.message || 'Registration successful');
-                onSuccess();
+                const loginRes = await login({email: initialData.email, password: initialData.password})
+                if (loginRes.success) {
+                    toast.success(loginRes.message);
+                    onSuccess();
+                }
             } else {
                 console.error('Registration completion failed:', response.message);
                 toast.error(response.message || 'Registration completion failed');
@@ -281,11 +286,11 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
 
     const handleVerificationCodeChange = (index: number, value: string) => {
         if (value.length > 1) return; // Only allow single digit
-        
+
         const newCode = [...verificationCode];
         newCode[index] = value;
         setVerificationCode(newCode);
-        
+
         // Auto-focus next input
         if (value && index < 5) {
             const nextInput = document.getElementById(`verification-${index + 1}`);
@@ -303,7 +308,7 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
     const handleVerificationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const code = verificationCode.join('');
-        
+
         if (code.length !== 6) {
             setErrors({ verification: 'Please enter all 6 digits' });
             return;
@@ -506,13 +511,6 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
                                 I agree to receive marketing messages and promotional offers via email
                             </label>
                         </div>
-
-                        {/* Error Message */}
-                        {error && (
-                            <div className="bg-red-500/20 border border-red-500 rounded-lg p-3">
-                                <p className="text-red-400 text-sm">{error}</p>
-                            </div>
-                        )}
 
                         {/* Sign Up Button */}
                         <button
@@ -780,14 +778,13 @@ export default function SignupModal({ isOpen, onClose, onSuccess, onSwitchToSign
                                         value={digit}
                                         onChange={(e) => handleVerificationCodeChange(index, e.target.value)}
                                         onKeyDown={(e) => handleVerificationKeyDown(index, e)}
-                                        className={`w-12 h-12 text-center text-xl font-bold bg-[#182641] border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#E0FE08] ${
-                                            errors.verification ? 'border-red-500' : 'border-[#E0FE08]'
-                                        }`}
+                                        className={`w-12 h-12 text-center text-xl font-bold bg-[#182641] border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#E0FE08] ${errors.verification ? 'border-red-500' : 'border-[#E0FE08]'
+                                            }`}
                                         autoComplete="off"
                                     />
                                 ))}
                             </div>
-                            
+
                             {errors.verification && (
                                 <p className="text-red-500 text-sm text-center">{errors.verification}</p>
                             )}
