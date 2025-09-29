@@ -1,6 +1,7 @@
 'use client';
 
 import { Icon } from '@iconify/react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 interface HeaderProps {
@@ -46,8 +47,8 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
             {user ? (
               <div className="flex items-center space-x-4">
                 {/* Balance Display */}
-                <div className="hidden md:flex items-center space-x-2 bg-yellow-primary/10 px-3 py-2 rounded-lg">
-                  <Icon icon="mdi:wallet" className="w-5 h-5 text-yellow-primary" />
+                <div className="h-10 hidden md:flex items-center space-x-2 bg-yellow-primary/10 px-3 py-2 rounded-lg">
+                  <Icon icon="mdi:wallet" className="w-6 h-6 text-yellow-primary" />
                   <span className="text-sm font-medium text-white">
                     $0
                   </span>
@@ -59,11 +60,11 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     className="flex items-center space-x-2 bg-yellow-primary/10 hover:bg-yellow-primary/20 px-3 py-2 rounded-lg transition-colors"
                   >
-                    <div className="w-8 h-8 bg-yellow-primary/50 rounded-full text-center flex items-center justify-center">
-                      <Icon icon="mdi:account" className="w-6 h-6" />
+                    <div className="w-6 h-6 bg-yellow-primary/50 rounded-full text-center flex items-center justify-center">
+                      <Icon icon="mdi:account" className="w-4 h-4" />
                     </div>
                     <span className="hidden md:block text-sm font-medium text-white">
-                      {user.first_name}
+                      {user.first_name || "serhii"}
                     </span>
                     <Icon
                       icon="mdi:chevron-down"
@@ -76,10 +77,10 @@ export default function Header({ user, onLogin, onRegister, onLogout }: HeaderPr
                   {isUserMenuOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-[#0C1423] border border-yellow-primary/20 rounded-lg shadow-lg z-50">
                       <div className="py-1">
-                        <button className="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-yellow-primary/10 transition-colors">
+                        <Link href='/profile' className="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-yellow-primary/10 transition-colors">
                           <Icon icon="mdi:account" className="w-4 h-4 mr-3" />
                           Profile
-                        </button>
+                        </Link>
                         <button className="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-yellow-primary/10 transition-colors">
                           <Icon icon="mdi:cog" className="w-4 h-4 mr-3" />
                           Settings

@@ -181,8 +181,8 @@ button, a {
 
 /* Main Loading */
 .main-loading-spinner {
-  --size: 250px;
-  --thickness: 25px;
+  --size: 150px;
+  --thickness: 20px;
 
   width: var(--size);
   height: var(--size);

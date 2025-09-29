@@ -8,6 +8,7 @@ import MainContent from './MainContent';
 import { useAuth } from '@/contexts/AuthContext';
 import SigninModal from './auth/signin';
 import SignupModal from './auth/signup';
+import MainLoading from './loading/MainLoading';
 
 // Create context for navbar state
 interface NavbarContextType {
@@ -92,6 +93,9 @@ export default function Layout({
     balance: user.balance,
     avatar: user.avatar,
   } : undefined;
+
+  if (isLoading)
+    return <MainLoading />
 
   return (
     <NavbarContext.Provider value={{ isOpen: isNavbarOpen, setIsOpen: setIsNavbarOpen }}>
