@@ -7,13 +7,12 @@ import { Icon } from '@iconify/react';
 export default function VerifyEmailPage() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('');
-  const searchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const token = searchParams.get('token');
+        const token = '';
         if (!token) {
           setStatus('error');
           setMessage('No verification token provided');
@@ -34,7 +33,7 @@ export default function VerifyEmailPage() {
     };
 
     verifyEmail();
-  }, [searchParams, router]);
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-[#0C1423] flex items-center justify-center p-4">
